@@ -1,0 +1,26 @@
+Maintainers: Antoine Cotten <tonio.cotten@gmail.com> (@antoineco)
+GitRepo: https://github.com/antoineco/tomcat-mod_cluster.git
+
+Tags: 1.3.5-tc7, 1.3-tc7, 1-tc7
+GitCommit: dff6d00d1fda52afb7bad2a287551573a478328f
+Directory: 1.3/tc7
+
+Tags: 1.3.5-tc7-alpine, 1.3-tc7-alpine, 1-tc7-alpine
+GitCommit: dff6d00d1fda52afb7bad2a287551573a478328f
+Directory: 1.3/tc7/alpine
+
+Tags: 1.3.5-tc8, 1.3-tc8, 1-tc8, 1.3.5, 1.3, 1, latest
+GitCommit: dff6d00d1fda52afb7bad2a287551573a478328f
+Directory: 1.3/tc8
+
+Tags: 1.3.5-tc8-alpine, 1.3-tc8-alpine, 1-tc8-alpine, 1.3.5-alpine, 1.3-alpine, 1-alpine, alpine
+GitCommit: dff6d00d1fda52afb7bad2a287551573a478328f
+Directory: 1.3/tc8/alpine
+
+Tags: 1.3.5-tc8.5, 1.3-tc8.5, 1-tc8.5
+GitCommit: dff6d00d1fda52afb7bad2a287551573a478328f
+Directory: 1.3/tc8.5
+
+Tags: 1.3.5-tc8.5-alpine, 1.3-tc8.5-alpine, 1-tc8.5-alpine
+GitCommit: dff6d00d1fda52afb7bad2a287551573a478328f
+Directory: 1.3/tc8.5/alpine
