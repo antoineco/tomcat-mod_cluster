@@ -1,11 +1,11 @@
 # Supported tags and respective `Dockerfile` links
 
-* `1.3.5-tc7`, `1.3-tc7`, `1-tc7` [(1.3/tc7/Dockerfile)][dockerfile-tc7]
-* `1.3.5-tc7-alpine`, `1.3-tc7-alpine`, `1-tc7-alpine` [(1.3/tc7/alpine/Dockerfile)][dockerfile-tc7-alpine]
-* `1.3.5-tc8`, `1.3-tc8`, `1-tc8`, `1.3.5`, `1.3`, `1`, `latest` [(1.3/tc8/Dockerfile)][dockerfile-tc8]
-* `1.3.5-tc8-alpine`, `1.3-tc8-alpine`, `1-tc8-alpine`, `1.3.5-alpine`, `1.3-alpine`, `1-alpine`, `alpine` [(1.3/tc8/alpine/Dockerfile)][dockerfile-tc8-alpine]
-* `1.3.5-tc8.5`, `1.3-tc8.5`, `1-tc8.5` [(1.3/tc8.5/Dockerfile)][dockerfile-tc8.5]
-* `1.3.5-tc8.5-alpine`, `1.3-tc8.5-alpine`, `1-tc8.5-alpine` [(1.3/tc8.5/alpine/Dockerfile)][dockerfile-tc8.5-alpine]
+* `1.3.5-7`, `1.3-7`, `1-7` [(1.3/tc7/Dockerfile)][dockerfile-tc7]
+* `1.3.5-7-alpine`, `1.3-7-alpine`, `1-7-alpine` [(1.3/tc7/alpine/Dockerfile)][dockerfile-tc7-alpine]
+* `1.3.5-8`, `1.3-8`, `1-8`, `1.3.5`, `1.3`, `1`, `latest` [(1.3/tc8/Dockerfile)][dockerfile-tc8]
+* `1.3.5-8-alpine`, `1.3-8-alpine`, `1-8-alpine`, `1.3.5-alpine`, `1.3-alpine`, `1-alpine`, `alpine` [(1.3/tc8/alpine/Dockerfile)][dockerfile-tc8-alpine]
+* `1.3.5-8.5`, `1.3-8.5`, `1-8.5` [(1.3/tc8.5/Dockerfile)][dockerfile-tc8.5]
+* `1.3.5-8.5-alpine`, `1.3-8.5-alpine`, `1-8.5-alpine` [(1.3/tc8.5/alpine/Dockerfile)][dockerfile-tc8.5-alpine]
 
 # What is `mod_cluster`?
 
@@ -31,9 +31,38 @@ This image inherits from the configuration options from the parent [`tomcat`][do
 
 The `ModCluster` Listener is configured by default to listen to multicast advertise messages in the Tomcat server configuration file (`conf/server.xml`). Please refer to the [mod_cluster documentation][mod_cluster-tc-conf] for a list of all available worker-side Configuration Properties.
 
-# Rebuilding tags
+# Image Variants
 
-All tags supported by this repository can be rebuilt using [Bashbrew][bashbrew], the tool used for cloning, building, tagging, and pushing the Docker official images. To do so, simply call the `bashbrew` utility, pointing it to the included `tomcat-mod_cluster` definition file as in the example below:
+The `tomcat-mod_cluster` images come in different flavors, each designed for a specific use case.
+
+## Base operating system
+
+### `tomcat-mod_cluster:<version>`
+
+This is the defacto image, based on the [Debian](http://debian.org) operating system, available in [the `debian` official image](https://hub.docker.com/_/debian).
+
+### `tomcat-mod_cluster:<version>-alpine`
+
+This image is based on the [Alpine Linux](http://alpinelinux.org) operating system, available in [the `alpine` official image](https://hub.docker.com/_/alpine). Alpine Linux is much smaller than most distribution base images (~5MB), and thus leads to much slimmer images in general.
+
+## Components
+
+A tagging convention determines the version of the components distributed with the `tomcat-mod_cluster` image.
+
+### `<version α>`
+
+* mod_cluster release: **α**
+* Tomcat release: *as distributed with the [`tomcat:latest`][docker-tomcat] upstream image*
+
+### `<version α>-<version β>`
+
+* mod_cluster release: **α**
+* Tomcat release: **β** (latest patch version)
+
+# Rebuilding images
+
+All images supported by this repository can be rebuilt and tagged using [Bashbrew][bashbrew], the tool used for cloning, building, tagging, and pushing the Docker official images. To do so, simply call the `bashbrew` utility, pointing it to the included `tomcat-mod_cluster` definition file as in the example below:
+
 ```
 bashbrew --library . build tomcat-mod_cluster
 ```
