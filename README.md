@@ -59,13 +59,21 @@ A tagging convention determines the version of the components distributed with t
 * mod_cluster release: **α**
 * Tomcat release: **β** (latest patch version)
 
-# Rebuilding images
+# Maintenance
 
-All images supported by this repository can be rebuilt and tagged using [Bashbrew][bashbrew], the tool used for cloning, building, tagging, and pushing the Docker official images. To do so, simply call the `bashbrew` utility, pointing it to the included `tomcat-mod_cluster` definition file as in the example below:
+## Rebuilding images
+
+All images in this repository can be rebuilt and tagged manually using [Bashbrew][bashbrew], the tool used for cloning, building, tagging, and pushing the Docker official images. To do so, simply call the `bashbrew` utility, pointing it to the included `httpd-mod_cluster` definition file as in the example below:
 
 ```
 bashbrew --library . build tomcat-mod_cluster
 ```
+
+## Automated build pipeline
+
+Any push to the upstream [`tomcat`][docker-tomcat] repository or to the source repository triggers an automatic rebuild of all the images in this repository. From a high perspective the automated build pipeline looks like the below diagram:
+
+![Automated build pipeline][pipeline]
 
 
 [dockerfile-tc7]: https://github.com/antoineco/tomcat-mod_cluster/blob/master/1.3/tc7/Dockerfile
@@ -79,3 +87,4 @@ bashbrew --library . build tomcat-mod_cluster
 [mod_cluster]: http://modcluster.io/
 [mod_cluster-tc-conf]: http://modcluster.io/documentation/#worker-side-configuration-properties
 [bashbrew]: https://github.com/docker-library/official-images/blob/master/bashbrew/README.md
+[pipeline]: https://raw.githubusercontent.com/antoineco/tomcat-mod_cluster/master/build_pipeline.png
