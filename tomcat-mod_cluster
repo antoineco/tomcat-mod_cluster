@@ -24,3 +24,27 @@ Directory: 1.3/tc8.5
 Tags: 1.3.5-8.5-alpine, 1.3-8.5-alpine, 1-8.5-alpine
 GitCommit: 854272e58c7477a49366b33632c8d35ec3310642
 Directory: 1.3/tc8.5/alpine
+
+Tags: 1.3.6.cr1-7
+GitCommit: 3c210653799ea142bc71221771360879bc0b1c39
+Directory: 1.3cr/tc7
+
+Tags: 1.3.6.cr1-7-alpine
+GitCommit: 3c210653799ea142bc71221771360879bc0b1c39
+Directory: 1.3cr/tc7/alpine
+
+Tags: 1.3.6.cr1-8, 1.3.6.cr1
+GitCommit: 3c210653799ea142bc71221771360879bc0b1c39
+Directory: 1.3cr/tc8
+
+Tags: 1.3.6.cr1-8-alpine, 1.3.6.cr1-alpine
+GitCommit: 3c210653799ea142bc71221771360879bc0b1c39
+Directory: 1.3cr/tc8/alpine
+
+Tags: 1.3.6.cr1-8.5
+GitCommit: 3c210653799ea142bc71221771360879bc0b1c39
+Directory: 1.3cr/tc8.5
+
+Tags: 1.3.6.cr1-8.5-alpine
+GitCommit: 3c210653799ea142bc71221771360879bc0b1c39
+Directory: 1.3cr/tc8.5/alpine
