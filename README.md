@@ -1,17 +1,11 @@
 # Supported tags and respective `Dockerfile` links
 
 * `1.3.5-7`, `1.3-7`, `1-7` [(1.3/tc7/Dockerfile)][dockerfile-tc7]
-* `1.3.5-7-alpine`, `1.3-7-alpine`, `1-7-alpine` [(1.3/tc7/alpine/Dockerfile)][dockerfile-tc7-alpine]
+* `1.3.5-7-alpine`, `1.3-7-alpine`, `1-7-alpine` [(1.3/tc7-alpine/Dockerfile)][dockerfile-tc7-alpine]
 * `1.3.5-8`, `1.3-8`, `1-8`, `1.3.5`, `1.3`, `1`, `latest` [(1.3/tc8/Dockerfile)][dockerfile-tc8]
-* `1.3.5-8-alpine`, `1.3-8-alpine`, `1-8-alpine`, `1.3.5-alpine`, `1.3-alpine`, `1-alpine`, `alpine` [(1.3/tc8/alpine/Dockerfile)][dockerfile-tc8-alpine]
+* `1.3.5-8-alpine`, `1.3-8-alpine`, `1-8-alpine`, `1.3.5-alpine`, `1.3-alpine`, `1-alpine`, `alpine` [(1.3/tc8-alpine/Dockerfile)][dockerfile-tc8-alpine]
 * `1.3.5-8.5`, `1.3-8.5`, `1-8.5` [(1.3/tc8.5/Dockerfile)][dockerfile-tc8.5]
-* `1.3.5-8.5-alpine`, `1.3-8.5-alpine`, `1-8.5-alpine` [(1.3/tc8.5/alpine/Dockerfile)][dockerfile-tc8.5-alpine]
-* `1.3.6.cr1-7` [(1.3cr/tc7/Dockerfile)][dockerfile-tc7-unstable]
-* `1.3.6.cr1-7-alpine` [(1.3cr/tc7/alpine/Dockerfile)][dockerfile-tc7-alpine-unstable]
-* `1.3.6.cr1-8`, `1.3.6.cr1` [(1.3cr/tc8/Dockerfile)][dockerfile-tc8-unstable]
-* `1.3.6.cr1-8-alpine`, `1.3.6.cr1-alpine` [(1.3cr/tc8/alpine/Dockerfile)][dockerfile-tc8-alpine-unstable]
-* `1.3.6.cr1-8.5` [(1.3cr/tc8.5/Dockerfile)][dockerfile-tc8.5-unstable]
-* `1.3.6.cr1-8.5-alpine` [(1.3cr/tc8.5/alpine/Dockerfile)][dockerfile-tc8.5-alpine-unstable]
+* `1.3.5-8.5-alpine`, `1.3-8.5-alpine`, `1-8.5-alpine` [(1.3/tc8.5-alpine/Dockerfile)][dockerfile-tc8.5-alpine]
 
 # What is `mod_cluster`?
 
@@ -83,17 +77,11 @@ Any push to the upstream [`tomcat`][docker-tomcat] repository or to the source r
 
 
 [dockerfile-tc7]: https://github.com/antoineco/tomcat-mod_cluster/blob/master/1.3/tc7/Dockerfile
-[dockerfile-tc7-alpine]: https://github.com/antoineco/tomcat-mod_cluster/blob/master/1.3/tc7/alpine/Dockerfile
+[dockerfile-tc7-alpine]: https://github.com/antoineco/tomcat-mod_cluster/blob/master/1.3/tc7-alpine/Dockerfile
 [dockerfile-tc8]: https://github.com/antoineco/tomcat-mod_cluster/blob/master/1.3/tc8/Dockerfile
-[dockerfile-tc8-alpine]: https://github.com/antoineco/tomcat-mod_cluster/blob/master/1.3/tc8/alpine/Dockerfile
+[dockerfile-tc8-alpine]: https://github.com/antoineco/tomcat-mod_cluster/blob/master/1.3/tc8-alpine/Dockerfile
 [dockerfile-tc8.5]: https://github.com/antoineco/tomcat-mod_cluster/blob/master/1.3/tc8.5/Dockerfile
-[dockerfile-tc8.5-alpine]: https://github.com/antoineco/tomcat-mod_cluster/blob/master/1.3/tc8.5/alpine/Dockerfile
-[dockerfile-tc7-unstable]: https://github.com/antoineco/tomcat-mod_cluster/blob/master/1.3cr/tc7/Dockerfile
-[dockerfile-tc7-alpine-unstable]: https://github.com/antoineco/tomcat-mod_cluster/blob/master/1.3cr/tc7/alpine/Dockerfile
-[dockerfile-tc8-unstable]: https://github.com/antoineco/tomcat-mod_cluster/blob/master/1.3cr/tc8/Dockerfile
-[dockerfile-tc8-alpine-unstable]: https://github.com/antoineco/tomcat-mod_cluster/blob/master/1.3cr/tc8/alpine/Dockerfile
-[dockerfile-tc8.5-unstable]: https://github.com/antoineco/tomcat-mod_cluster/blob/master/1.3cr/tc8.5/Dockerfile
-[dockerfile-tc8.5-alpine-unstable]: https://github.com/antoineco/tomcat-mod_cluster/blob/master/1.3cr/tc8.5/alpine/Dockerfile
+[dockerfile-tc8.5-alpine]: https://github.com/antoineco/tomcat-mod_cluster/blob/master/1.3/tc8.5-alpine/Dockerfile
 [banner]: https://raw.githubusercontent.com/antoineco/tomcat-mod_cluster/master/modcluster_banner_r1v2.png
 [docker-tomcat]: https://hub.docker.com/_/tomcat/
 [mod_cluster]: http://modcluster.io/

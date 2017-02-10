@@ -10,7 +10,7 @@ RUN set -x \
   && buildDeps=" \
        openjdk-${JAVA_VERSION%%[-~bu]*}-jdk=$JAVA_DEBIAN_VERSION \
        maven \
-  " \
+     " \
   && apt-get update \
   && apt-get install -y --no-install-recommends -V $buildDeps \
   && rm -r /var/lib/apt/lists/* \
@@ -26,7 +26,7 @@ RUN set -x \
 # extract compiled libraries to CATALINA_HOME
   && tar -xzvf target/mod_cluster-parent-"$MOD_CLUSTER_VERSION"-bin.tar.gz \
        --strip-components=2 -C "$CATALINA_HOME"/lib \
-       --exclude=*tomcat6*.jar --exclude=*tomcat7*.jar \
+       --exclude=mod_cluster-container-tomcat6*.jar --exclude=mod_cluster-container-tomcat7*.jar \
        JBossWeb-Tomcat/lib \
 # cleanup
   && apt-get purge -y --auto-remove $buildDeps \

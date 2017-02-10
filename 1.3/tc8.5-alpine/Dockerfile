@@ -2,8 +2,8 @@ FROM tomcat:8.5-alpine
 
 MAINTAINER Antoine Cotten <tonio.cotten@gmail.com> (@antoineco)
 
-ENV MOD_CLUSTER_VERSION=1.3.6.CR1 \
-    MOD_CLUSTER_MD5SUM=5925f7c1d33f998f1c5e33ff8820ba32
+ENV MOD_CLUSTER_VERSION=1.3.5.Final \
+    MOD_CLUSTER_MD5SUM=91c54d6e87141acbbf854c39a48872c9
 
 # install mod_cluster components
 RUN set -x \
@@ -29,7 +29,7 @@ RUN set -x \
 # extract compiled libraries to CATALINA_HOME
   && tar -xzvf target/mod_cluster-parent-"$MOD_CLUSTER_VERSION"-bin.tar.gz \
        --strip-components=2 -C "$CATALINA_HOME"/lib \
-       --exclude=*tomcat6*.jar --exclude=*tomcat7*.jar \
+       --exclude=mod_cluster-container-tomcat6*.jar --exclude=mod_cluster-container-tomcat7*.jar \
        JBossWeb-Tomcat/lib \
 # cleanup
   && apk del .build-deps \
