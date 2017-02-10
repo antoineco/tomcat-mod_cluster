@@ -28,17 +28,17 @@ for version in "${versions[@]}"; do
 	modClusterMd5sum="${modClusterMd5sums[$version]}"
 
 	for variant in "$version"/*/; do
-		variant="$(basename "$variant")" # "tc8" or "tc8-alpine"
-		tcVariant="${variant%-*}" # "tc7"
-		tcMajor="${tcVariant:2:1}" # "7"
+		variant="$(basename "$variant")" # "8" or "8-alpine"
+		tcVariant="${variant%-*}" # "8" or "8.5"
+		tcMajor="${tcVariant%.*}" # "8"
 		shopt -s extglob
 		subVariant="${variant##${tcVariant}?(-)}" # "" or "alpine"
 		shopt -u extglob
 
 		baseImage='tomcat'
 		case "$variant" in
-			tc*)
-				baseImage+=":${tcVariant#tc}${subVariant:+-$subVariant}" # ":8" or ":8-alpine"
+			[6-8]*)
+				baseImage+=":${tcVariant}${subVariant:+-$subVariant}" # ":8" or ":8-alpine"
 				;;
 			*)
 				echo >&2 "not sure what to do with $version/$variant re: baseImage; skipping"
@@ -64,6 +64,40 @@ for version in "${versions[@]}"; do
 			" \
 			"$version/$variant/Dockerfile"
 
+		# proper smoke test impossible on Tomcat 6 due to missing 'configtest' subcommand
+		if [ "$tcMajor" -eq 6 ]; then
+			cat >> "$version/$variant/Dockerfile" <<-'EOD'
+
+				# verify mod_cluster is working properly
+				RUN set -e \
+				  && catalina.sh start \
+				  && while ! grep -q 'Server startup in' logs/catalina.out; do \
+				       echo -n .; sleep .2; \
+				     done; echo \
+				  && catalina.sh stop \
+				  && while ! grep -q 'Stopping Coyote' logs/catalina.out; do \
+				       echo -n .; sleep .2; \
+				     done; echo \
+				  && clusterLines="$(grep -i 'modcluster' logs/catalina.out)" \
+				  && if ! echo "$clusterLines" | grep 'INFO: MODCLUSTER000001: Initializing mod_cluster' >&2; then \
+				       echo >&2 "$clusterLines"; \
+				       exit 1; \
+				     fi \
+				  && rm -rf conf/Catalina work/Catalina logs/*
+			EOD
+		else
+			cat >> "$version/$variant/Dockerfile" <<-'EOD'
+
+				# verify mod_cluster is working properly
+				RUN set -e \
+				  && clusterLines="$(catalina.sh configtest 2>&1)" \
+				  && clusterLines="$(echo "$clusterLines" | grep -i 'modcluster')" \
+				  && if ! echo "$clusterLines" | grep 'INFO: MODCLUSTER000001: Initializing mod_cluster' >&2; then \
+				       echo >&2 "$clusterLines"; \
+				       exit 1; \
+				     fi
+			EOD
+		fi
 	done
 done
 

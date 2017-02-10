@@ -14,7 +14,7 @@ RUN set -x \
        openjdk"${JAVA_VERSION%%[-~bu]*}"="$JAVA_ALPINE_VERSION" \
 # alpine 3.4 does not have a maven package
   && mkdir -p /usr/share/maven /usr/share/maven/ref \
-  && wget -qO- http://apache.osuosl.org/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz \
+  && wget -qO- 'https://www.apache.org/dyn/closer.cgi?action=download&filename=maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz' \
        | tar -xzC /usr/share/maven --strip-components=1 \
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn \
   && cd /tmp \
@@ -33,7 +33,7 @@ RUN set -x \
        JBossWeb-Tomcat/lib \
 # cleanup
   && apk del .build-deps \
-  && rm -rf ~/.m2 /usr/share/maven /tmp/"$modDir"
+  && rm -rf ~/.m2 /usr/share/maven /usr/bin/mvn /tmp/"$modDir"
 
 # add example Listener to server configuration
 RUN listenerLine="$(grep -nE "^\s+<Listener" conf/server.xml | tail -1 | cut -d':' -f1)" \

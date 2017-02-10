@@ -1,4 +1,4 @@
-FROM tomcat:8-alpine
+FROM tomcat:6
 
 MAINTAINER Antoine Cotten <tonio.cotten@gmail.com> (@antoineco)
 
@@ -7,16 +7,13 @@ ENV MOD_CLUSTER_VERSION=1.3.5.Final \
 
 # install mod_cluster components
 RUN set -x \
-  && apk add --no-cache --virtual .build-deps \
-       ca-certificates \
-       openssl \
-       tar \
-       openjdk"${JAVA_VERSION%%[-~bu]*}"="$JAVA_ALPINE_VERSION" \
-# alpine 3.4 does not have a maven package
-  && mkdir -p /usr/share/maven /usr/share/maven/ref \
-  && wget -qO- http://apache.osuosl.org/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz \
-       | tar -xzC /usr/share/maven --strip-components=1 \
-  && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn \
+  && buildDeps=" \
+       openjdk-${JAVA_VERSION%%[-~bu]*}-jdk=$JAVA_DEBIAN_VERSION \
+       maven \
+     " \
+  && apt-get update \
+  && apt-get install -y --no-install-recommends -V $buildDeps \
+  && rm -r /var/lib/apt/lists/* \
   && cd /tmp \
   && wget https://github.com/modcluster/mod_cluster/archive/"$MOD_CLUSTER_VERSION".tar.gz -O mod_cluster.tgz \
   && echo "$MOD_CLUSTER_MD5SUM  /tmp/mod_cluster.tgz" | md5sum -c - \
@@ -29,11 +26,11 @@ RUN set -x \
 # extract compiled libraries to CATALINA_HOME
   && tar -xzvf target/mod_cluster-parent-"$MOD_CLUSTER_VERSION"-bin.tar.gz \
        --strip-components=2 -C "$CATALINA_HOME"/lib \
-       --exclude=mod_cluster-container-tomcat6*.jar --exclude=mod_cluster-container-tomcat7*.jar \
+       --exclude=mod_cluster-container-tomcat7*.jar --exclude=mod_cluster-container-tomcat8*.jar \
        JBossWeb-Tomcat/lib \
 # cleanup
-  && apk del .build-deps \
-  && rm -rf ~/.m2 /usr/share/maven /tmp/"$modDir"
+  && apt-get purge -y --auto-remove $buildDeps \
+  && rm -rf ~/.m2 /tmp/"$modDir"
 
 # add example Listener to server configuration
 RUN listenerLine="$(grep -nE "^\s+<Listener" conf/server.xml | tail -1 | cut -d':' -f1)" \
@@ -44,9 +41,17 @@ RUN listenerLine="$(grep -nE "^\s+<Listener" conf/server.xml | tail -1 | cut -d'
 
 # verify mod_cluster is working properly
 RUN set -e \
-  && clusterLines="$(catalina.sh configtest 2>&1)" \
-  && clusterLines="$(echo "$clusterLines" | grep -i 'modcluster')" \
+  && catalina.sh start \
+  && while ! grep -q 'Server startup in' logs/catalina.out; do \
+       echo -n .; sleep .2; \
+     done; echo \
+  && catalina.sh stop \
+  && while ! grep -q 'Stopping Coyote' logs/catalina.out; do \
+       echo -n .; sleep .2; \
+     done; echo \
+  && clusterLines="$(grep -i 'modcluster' logs/catalina.out)" \
   && if ! echo "$clusterLines" | grep 'INFO: MODCLUSTER000001: Initializing mod_cluster' >&2; then \
        echo >&2 "$clusterLines"; \
        exit 1; \
-     fi
+     fi \
+  && rm -rf conf/Catalina work/Catalina logs/*
