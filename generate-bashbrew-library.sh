@@ -6,7 +6,7 @@
 set -euo pipefail
 
 declare -A latestVariant=(
-	['1.3']=8
+	['1.3']='8.0'
 )
 declare -A aliases=(
 	['1.3']='1 latest'
@@ -53,12 +53,12 @@ join() {
 }
 
 for version in "${versions[@]}"; do
-	variants=( "$version"/*/ ) # "1.3/8/" or "1.3/8-alpine/"
-	variants=( "${variants[@]#${version}/}" ) # "8/" or "8-alpine/"
-	variants=( $(printf "%s\n" "${variants[@]%/}" | sort -V) ) # "8" or "8-alpine"
+	variants=( "$version"/*/ ) # "1.3/8.0/" or "1.3/8.0-alpine/"
+	variants=( "${variants[@]#${version}/}" ) # "8.0/" or "8.0-alpine/"
+	variants=( $(printf "%s\n" "${variants[@]%/}" | sort -V) ) # "8.0" or "8.0-alpine"
 
 	for variant in "${variants[@]}"; do
-		tcVariant="${variant%-*}" # "8"
+		tcVariant="${variant%-*}" # "8.0"
 		shopt -s extglob
 		subVariant="${variant##${tcVariant}?(-)}" # "" or "alpine"
 		shopt -u extglob
@@ -84,14 +84,14 @@ for version in "${versions[@]}"; do
 
 		variantAliases=(
 			"${versionAliases[@]/%/-$variant}"
-		) # ( "1.3.5-8" ... "1-8", "latest-8" ) or ( "1.3.5-8-alpine" ... "1-8-alpine", "latest-8-alpine" )
+		) # ( "1.3.5-8.0" ... "1-8.0", "latest-8.0" ) or ( "1.3.5-8.0-alpine" ... "1-8.0-alpine", "latest-8.0-alpine" )
 		variantAliases=(
 			${variantAliases[@]##latest-*}
-		) # ( "1.3.5-8" ... "1-8" ) or ( "1.3.5-8-alpine" ... "1-8-alpine" )
+		) # ( "1.3.5-8.0" ... "1-8.0" ) or ( "1.3.5-8.0-alpine" ... "1-8.0-alpine" )
 
-		if [ "$variant" = "${latestVariant[$version]}" ]; then # variant == "8"
+		if [ "$variant" = "${latestVariant[$version]}" ]; then # variant == "8.0"
 			variantAliases+=( "${versionAliases[@]}" )
-		elif [ "$subVariant" -a "${variant%-$subVariant}" = "${latestVariant[$version]}" ]; then # alpine && variant == "8"
+		elif [ "$subVariant" -a "${variant%-$subVariant}" = "${latestVariant[$version]}" ]; then # alpine && variant == "8.0"
 			subVariantAliases=( "${versionAliases[@]/%/-$subVariant}" )
 			subVariantAliases=( "${subVariantAliases[@]#latest-}" )
 			variantAliases+=( "${subVariantAliases[@]}" )

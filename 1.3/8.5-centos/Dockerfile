@@ -1,4 +1,4 @@
-FROM tomcat:6
+FROM antoineco/tomcat:8.5-centos
 
 MAINTAINER Antoine Cotten <tonio.cotten@gmail.com> (@antoineco)
 
@@ -8,14 +8,13 @@ ENV MOD_CLUSTER_VERSION=1.3.5.Final \
 # install mod_cluster components
 RUN set -x \
   && buildDeps=" \
-       openjdk-${JAVA_VERSION%%[-~bu]*}-jdk=$JAVA_DEBIAN_VERSION \
+       java-1.${JAVA_VERSION%%[-~bu]*}.0-openjdk-devel-$JAVA_CENTOS_VERSION \
        maven \
      " \
-  && apt-get update \
-  && apt-get install -y --no-install-recommends -V $buildDeps \
-  && rm -r /var/lib/apt/lists/* \
+  && yum install -y $buildDeps \
+  && yum clean all \
   && cd /tmp \
-  && wget https://github.com/modcluster/mod_cluster/archive/"$MOD_CLUSTER_VERSION".tar.gz -O mod_cluster.tgz \
+  && curl -sSL https://github.com/modcluster/mod_cluster/archive/"$MOD_CLUSTER_VERSION".tar.gz -o mod_cluster.tgz \
   && echo "$MOD_CLUSTER_MD5SUM  /tmp/mod_cluster.tgz" | md5sum -c - \
   && modDir="$(tar -tf mod_cluster.tgz | head -1)" \
   && tar -xzvf mod_cluster.tgz && rm mod_cluster.tgz \
@@ -26,11 +25,11 @@ RUN set -x \
 # extract compiled libraries to CATALINA_HOME
   && tar -xzvf target/mod_cluster-parent-"$MOD_CLUSTER_VERSION"-bin.tar.gz \
        --strip-components=2 -C "$CATALINA_HOME"/lib \
-       --exclude=mod_cluster-container-tomcat7*.jar --exclude=mod_cluster-container-tomcat8*.jar \
+       --exclude=mod_cluster-container-tomcat6*.jar --exclude=mod_cluster-container-tomcat7*.jar \
        JBossWeb-Tomcat/lib \
 # cleanup
-  && apt-get purge -y --auto-remove $buildDeps \
-  && rm -rf ~/.m2 /tmp/"$modDir"
+  && yum history -y undo last \
+  && rm -rf ~/.m2 /usr/share/java /tmp/"$modDir"
 
 # add example Listener to server configuration
 RUN listenerLine="$(grep -nE "^\s+<Listener" conf/server.xml | tail -1 | cut -d':' -f1)" \
@@ -41,17 +40,9 @@ RUN listenerLine="$(grep -nE "^\s+<Listener" conf/server.xml | tail -1 | cut -d'
 
 # verify mod_cluster is working properly
 RUN set -e \
-  && catalina.sh start \
-  && while ! grep -q 'Server startup in' logs/catalina.out; do \
-       echo -n .; sleep .2; \
-     done; echo \
-  && catalina.sh stop \
-  && while pgrep java >/dev/null; do \
-       echo -n .; sleep .2; \
-     done; echo \
-  && clusterLines="$(grep -i 'modcluster' logs/catalina.out)" \
+  && clusterLines="$(catalina.sh configtest 2>&1)" \
+  && clusterLines="$(echo "$clusterLines" | grep -i 'modcluster')" \
   && if ! echo "$clusterLines" | grep 'INFO: MODCLUSTER000001: Initializing mod_cluster' >&2; then \
        echo >&2 "$clusterLines"; \
        exit 1; \
-     fi \
-  && rm -rf conf/Catalina work/Catalina logs/*
+     fi

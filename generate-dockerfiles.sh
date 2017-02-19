@@ -35,7 +35,16 @@ for version in "${versions[@]}"; do
 		subVariant="${variant##${tcVariant}?(-)}" # "" or "alpine"
 		shopt -u extglob
 
-		baseImage='tomcat'
+		case "$subVariant" in
+			centos)
+				# no "centos" variant in official tomcat repo
+				baseImage='antoineco\/tomcat'
+				;;
+			*)
+				baseImage='tomcat'
+				;;
+		esac
+
 		case "$variant" in
 			[6-8]*)
 				baseImage+=":${tcVariant}${subVariant:+-$subVariant}" # ":8" or ":8-alpine"
@@ -75,7 +84,7 @@ for version in "${versions[@]}"; do
 				       echo -n .; sleep .2; \
 				     done; echo \
 				  && catalina.sh stop \
-				  && while ! grep -q 'Stopping Coyote' logs/catalina.out; do \
+				  && while pgrep java >/dev/null; do \
 				       echo -n .; sleep .2; \
 				     done; echo \
 				  && clusterLines="$(grep -i 'modcluster' logs/catalina.out)" \
