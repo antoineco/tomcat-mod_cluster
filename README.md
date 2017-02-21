@@ -68,7 +68,7 @@ A tagging convention determines the version of the components distributed with t
 
 ## Updating configuration
 
-After performing changes to the Dockerfile templates or sample httpd configuration, regenerate the repository tree with:
+After performing changes to the Dockerfile templates, regenerate the repository tree with:
 
 ```
 ./generate-dockerfiles.sh
@@ -79,12 +79,12 @@ After performing changes to the Dockerfile templates or sample httpd configurati
 After committing changes to the repository, regenerate the library definition file with:
 
 ```
-./generate-bashbrew-library.sh >| httpd-mod_cluster
+./generate-bashbrew-library.sh >| tomcat-mod_cluster
 ```
 
 ## Rebuilding images
 
-All images in this repository can be rebuilt and tagged manually using [Bashbrew][bashbrew], the tool used for cloning, building, tagging, and pushing the Docker official images. To do so, simply call the `bashbrew` utility, pointing it to the included `httpd-mod_cluster` definition file as in the example below:
+All images in this repository can be rebuilt and tagged manually using [Bashbrew][bashbrew], the tool used for cloning, building, tagging, and pushing the Docker official images. To do so, simply call the `bashbrew` utility, pointing it to the included `tomcat-mod_cluster` definition file as in the example below:
 
 ```
 bashbrew --library . build tomcat-mod_cluster
