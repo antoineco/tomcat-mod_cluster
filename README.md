@@ -50,6 +50,10 @@ This is the defacto image, based on the [Debian](http://debian.org) operating sy
 
 This image is based on the [Alpine Linux](http://alpinelinux.org) operating system, available in [the `alpine` official image](https://hub.docker.com/_/alpine). Alpine Linux is much smaller than most distribution base images (~5MB), and thus leads to much slimmer images in general.
 
+### `tomcat-mod_cluster:<version>-centos`
+
+This image is based on the [CentOS](https://www.centos.org/) operating system, available in [the `centos` official image][docker-centos].
+
 ## Components
 
 A tagging convention determines the version of the components distributed with the `tomcat-mod_cluster` image.
@@ -99,6 +103,7 @@ Any push to the upstream [`tomcat`][docker-tomcat] repository or to the source r
 
 [banner]: https://raw.githubusercontent.com/antoineco/tomcat-mod_cluster/master/modcluster_banner_r1v2.png
 [docker-tomcat]: https://hub.docker.com/_/tomcat/
+[docker-centos]: https://hub.docker.com/_/centos/
 [mod_cluster]: http://modcluster.io/
 [mod_cluster-tc-conf]: http://modcluster.io/documentation/#worker-side-configuration-properties
 [bashbrew]: https://github.com/docker-library/official-images/blob/master/bashbrew/README.md
