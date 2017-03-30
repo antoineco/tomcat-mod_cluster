@@ -6,11 +6,11 @@
 set -euo pipefail
 
 declare -A modClusterVersions=(
-	['1.3']='1.3.5.Final'
+	['1.3']='1.3.6.Final'
 )
 
 declare -A modClusterMd5sums=(
-	['1.3']='91c54d6e87141acbbf854c39a48872c9'
+	['1.3']='71f91477fc872018d5857ddf74edbb8e'
 )
 
 declare -a supportedTomcats=( 6 7 8 )
