@@ -1,16 +1,16 @@
 # Supported tags and respective `Dockerfile` links
 
-* `1.3.6-6`, `1.3-6`, `1-6` [(1.3/6/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/8512ec306fa36f77b95ebddd9416e997c784d02e/1.3/6/Dockerfile)
-* `1.3.6-6-centos`, `1.3-6-centos`, `1-6-centos` [(1.3/6-centos/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/8512ec306fa36f77b95ebddd9416e997c784d02e/1.3/6-centos/Dockerfile)
-* `1.3.6-7`, `1.3-7`, `1-7` [(1.3/7/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/8512ec306fa36f77b95ebddd9416e997c784d02e/1.3/7/Dockerfile)
-* `1.3.6-7-alpine`, `1.3-7-alpine`, `1-7-alpine` [(1.3/7-alpine/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/8512ec306fa36f77b95ebddd9416e997c784d02e/1.3/7-alpine/Dockerfile)
-* `1.3.6-7-centos`, `1.3-7-centos`, `1-7-centos` [(1.3/7-centos/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/8512ec306fa36f77b95ebddd9416e997c784d02e/1.3/7-centos/Dockerfile)
-* `1.3.6-8.0`, `1.3-8.0`, `1-8.0` [(1.3/8.0/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/8512ec306fa36f77b95ebddd9416e997c784d02e/1.3/8.0/Dockerfile)
-* `1.3.6-8.0-alpine`, `1.3-8.0-alpine`, `1-8.0-alpine` [(1.3/8.0-alpine/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/8512ec306fa36f77b95ebddd9416e997c784d02e/1.3/8.0-alpine/Dockerfile)
-* `1.3.6-8.0-centos`, `1.3-8.0-centos`, `1-8.0-centos` [(1.3/8.0-centos/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/8512ec306fa36f77b95ebddd9416e997c784d02e/1.3/8.0-centos/Dockerfile)
-* `1.3.6-8.5`, `1.3-8.5`, `1-8.5`, `1.3.6`, `1.3`, `1`, `latest` [(1.3/8.5/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/8512ec306fa36f77b95ebddd9416e997c784d02e/1.3/8.5/Dockerfile)
-* `1.3.6-8.5-alpine`, `1.3-8.5-alpine`, `1-8.5-alpine`, `1.3.6-alpine`, `1.3-alpine`, `1-alpine`, `alpine` [(1.3/8.5-alpine/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/8512ec306fa36f77b95ebddd9416e997c784d02e/1.3/8.5-alpine/Dockerfile)
-* `1.3.6-8.5-centos`, `1.3-8.5-centos`, `1-8.5-centos`, `1.3.6-centos`, `1.3-centos`, `1-centos`, `centos` [(1.3/8.5-centos/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/8512ec306fa36f77b95ebddd9416e997c784d02e/1.3/8.5-centos/Dockerfile)
+* `1.3.7-6`, `1.3-6`, `1-6` [(1.3/6/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/dc52e773091b63cfa8e84319bde78ba5f576740e/1.3/6/Dockerfile)
+* `1.3.7-6-centos`, `1.3-6-centos`, `1-6-centos` [(1.3/6-centos/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/dc52e773091b63cfa8e84319bde78ba5f576740e/1.3/6-centos/Dockerfile)
+* `1.3.7-7`, `1.3-7`, `1-7` [(1.3/7/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/dc52e773091b63cfa8e84319bde78ba5f576740e/1.3/7/Dockerfile)
+* `1.3.7-7-alpine`, `1.3-7-alpine`, `1-7-alpine` [(1.3/7-alpine/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/dc52e773091b63cfa8e84319bde78ba5f576740e/1.3/7-alpine/Dockerfile)
+* `1.3.7-7-centos`, `1.3-7-centos`, `1-7-centos` [(1.3/7-centos/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/dc52e773091b63cfa8e84319bde78ba5f576740e/1.3/7-centos/Dockerfile)
+* `1.3.7-8.0`, `1.3-8.0`, `1-8.0` [(1.3/8.0/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/dc52e773091b63cfa8e84319bde78ba5f576740e/1.3/8.0/Dockerfile)
+* `1.3.7-8.0-alpine`, `1.3-8.0-alpine`, `1-8.0-alpine` [(1.3/8.0-alpine/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/dc52e773091b63cfa8e84319bde78ba5f576740e/1.3/8.0-alpine/Dockerfile)
+* `1.3.7-8.0-centos`, `1.3-8.0-centos`, `1-8.0-centos` [(1.3/8.0-centos/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/dc52e773091b63cfa8e84319bde78ba5f576740e/1.3/8.0-centos/Dockerfile)
+* `1.3.7-8.5`, `1.3-8.5`, `1-8.5`, `1.3.7`, `1.3`, `1`, `latest` [(1.3/8.5/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/dc52e773091b63cfa8e84319bde78ba5f576740e/1.3/8.5/Dockerfile)
+* `1.3.7-8.5-alpine`, `1.3-8.5-alpine`, `1-8.5-alpine`, `1.3.7-alpine`, `1.3-alpine`, `1-alpine`, `alpine` [(1.3/8.5-alpine/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/dc52e773091b63cfa8e84319bde78ba5f576740e/1.3/8.5-alpine/Dockerfile)
+* `1.3.7-8.5-centos`, `1.3-8.5-centos`, `1-8.5-centos`, `1.3.7-centos`, `1.3-centos`, `1-centos`, `centos` [(1.3/8.5-centos/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/dc52e773091b63cfa8e84319bde78ba5f576740e/1.3/8.5-centos/Dockerfile)
 
 # What is `mod_cluster`?
 
