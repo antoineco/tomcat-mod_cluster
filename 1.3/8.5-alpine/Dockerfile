@@ -2,8 +2,8 @@ FROM tomcat:8.5-alpine
 
 MAINTAINER Antoine Cotten <tonio.cotten@gmail.com> (@antoineco)
 
-ENV MOD_CLUSTER_VERSION=1.3.6.Final \
-    MOD_CLUSTER_MD5SUM=71f91477fc872018d5857ddf74edbb8e
+ENV MOD_CLUSTER_VERSION=1.3.7.Final \
+    MOD_CLUSTER_MD5SUM=ac5ad6cac05bfc2652fe8c4eb561d802
 
 # install mod_cluster components
 RUN set -x \
@@ -12,11 +12,7 @@ RUN set -x \
        openssl \
        tar \
        openjdk"${JAVA_VERSION%%[-~bu]*}"="$JAVA_ALPINE_VERSION" \
-# alpine 3.4 does not have a maven package
-  && mkdir -p /usr/share/maven /usr/share/maven/ref \
-  && wget -qO- 'https://www.apache.org/dyn/closer.cgi?action=download&filename=maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz' \
-       | tar -xzC /usr/share/maven --strip-components=1 \
-  && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn \
+       maven \
   && cd /tmp \
   && wget https://github.com/modcluster/mod_cluster/archive/"$MOD_CLUSTER_VERSION".tar.gz -O mod_cluster.tgz \
   && echo "$MOD_CLUSTER_MD5SUM  /tmp/mod_cluster.tgz" | md5sum -c - \
@@ -33,7 +29,7 @@ RUN set -x \
        JBossWeb-Tomcat/lib \
 # cleanup
   && apk del .build-deps \
-  && rm -rf ~/.m2 /usr/share/maven /usr/bin/mvn /tmp/"$modDir"
+  && rm -rf ~/.m2 /tmp/"$modDir"
 
 # add example Listener to server configuration
 RUN listenerLine="$(grep -nE "^\s+<Listener" conf/server.xml | tail -1 | cut -d':' -f1)" \
