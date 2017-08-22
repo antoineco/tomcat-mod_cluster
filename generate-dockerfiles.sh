@@ -46,7 +46,7 @@ for version in "${versions[@]}"; do
 		esac
 
 		case "$variant" in
-			[6-8]*)
+			[7-8]*)
 				baseImage+=":${tcVariant}${subVariant:+-$subVariant}" # ":8" or ":8-alpine"
 				;;
 			*)
@@ -73,40 +73,17 @@ for version in "${versions[@]}"; do
 			" \
 			"$version/$variant/Dockerfile"
 
-		# proper smoke test impossible on Tomcat 6 due to missing 'configtest' subcommand
-		if [ "$tcMajor" -eq 6 ]; then
-			cat >> "$version/$variant/Dockerfile" <<-'EOD'
+		cat >> "$version/$variant/Dockerfile" <<-'EOD'
 
-				# verify mod_cluster is working properly
-				RUN set -e \
-				  && catalina.sh start \
-				  && while ! grep -q 'Server startup in' logs/catalina.out; do \
-				       echo -n .; sleep .2; \
-				     done; echo \
-				  && catalina.sh stop \
-				  && while pgrep java >/dev/null; do \
-				       echo -n .; sleep .2; \
-				     done; echo \
-				  && clusterLines="$(grep -i 'modcluster' logs/catalina.out)" \
-				  && if ! echo "$clusterLines" | grep 'INFO: MODCLUSTER000001: Initializing mod_cluster' >&2; then \
-				       echo >&2 "$clusterLines"; \
-				       exit 1; \
-				     fi \
-				  && rm -rf conf/Catalina work/Catalina logs/*
-			EOD
-		else
-			cat >> "$version/$variant/Dockerfile" <<-'EOD'
-
-				# verify mod_cluster is working properly
-				RUN set -e \
-				  && clusterLines="$(catalina.sh configtest 2>&1)" \
-				  && clusterLines="$(echo "$clusterLines" | grep -i 'modcluster')" \
-				  && if ! echo "$clusterLines" | grep 'INFO: MODCLUSTER000001: Initializing mod_cluster' >&2; then \
-				       echo >&2 "$clusterLines"; \
-				       exit 1; \
-				     fi
-			EOD
-		fi
+			# verify mod_cluster is working properly
+			RUN set -e \
+			  && clusterLines="$(catalina.sh configtest 2>&1)" \
+			  && clusterLines="$(echo "$clusterLines" | grep -i 'modcluster')" \
+			  && if ! echo "$clusterLines" | grep 'INFO: MODCLUSTER000001: Initializing mod_cluster' >&2; then \
+			       echo >&2 "$clusterLines"; \
+			       exit 1; \
+			     fi
+		EOD
 	done
 done
 
