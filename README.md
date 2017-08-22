@@ -1,7 +1,5 @@
 # Supported tags and respective `Dockerfile` links
 
-* `1.3.7-6`, `1.3-6`, `1-6` [(1.3/6/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/dc52e773091b63cfa8e84319bde78ba5f576740e/1.3/6/Dockerfile)
-* `1.3.7-6-centos`, `1.3-6-centos`, `1-6-centos` [(1.3/6-centos/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/dc52e773091b63cfa8e84319bde78ba5f576740e/1.3/6-centos/Dockerfile)
 * `1.3.7-7`, `1.3-7`, `1-7` [(1.3/7/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/dc52e773091b63cfa8e84319bde78ba5f576740e/1.3/7/Dockerfile)
 * `1.3.7-7-alpine`, `1.3-7-alpine`, `1-7-alpine` [(1.3/7-alpine/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/dc52e773091b63cfa8e84319bde78ba5f576740e/1.3/7-alpine/Dockerfile)
 * `1.3.7-7-centos`, `1.3-7-centos`, `1-7-centos` [(1.3/7-centos/Dockerfile)](https://github.com/antoineco/tomcat-mod_cluster/blob/dc52e773091b63cfa8e84319bde78ba5f576740e/1.3/7-centos/Dockerfile)
