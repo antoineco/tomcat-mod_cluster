@@ -1,6 +1,6 @@
 FROM antoineco/tomcat:8.0-centos
 
-MAINTAINER Antoine Cotten <tonio.cotten@gmail.com> (@antoineco)
+LABEL maintainer="Antoine Cotten <tonio.cotten@gmail.com> (@antoineco)"
 
 ENV MOD_CLUSTER_VERSION=1.3.7.Final \
     MOD_CLUSTER_MD5SUM=36d9053fcfdcf561479e229bac759eef
@@ -31,7 +31,7 @@ RUN set -x \
   && cd "$modDir" \
 # build release tarball, twice
 # see https://issues.jboss.org/browse/MODCLUSTER-571
-  && mvn -P dist package && mvn -P dist package \
+  && mvn -P dist package -DskipTests && mvn -P dist package -DskipTests \
 # extract compiled libraries to CATALINA_HOME
   && tar -xzvf target/mod_cluster-parent-"$MOD_CLUSTER_VERSION"-bin.tar.gz \
        --strip-components=2 -C "$CATALINA_HOME"/lib \
@@ -39,7 +39,7 @@ RUN set -x \
        JBossWeb-Tomcat/lib \
 # cleanup
   && yum history -y undo last \
-  && rm -rf ~/.m2 /usr/share/maven /usr/bin/mvn /usr/share/java /tmp/"$modDir"
+  && rm -rf /tmp/"$modDir" ~/.m2 /usr/share/maven /usr/bin/mvn
 
 # add example Listener to server configuration
 RUN listenerLine="$(grep -nE "^\s+<Listener" conf/server.xml | tail -1 | cut -d':' -f1)" \
