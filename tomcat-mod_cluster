@@ -2,37 +2,37 @@ Maintainers: Antoine Cotten <tonio.cotten@gmail.com> (@antoineco)
 GitRepo: https://github.com/antoineco/tomcat-mod_cluster.git
 
 Tags: 1.3.7-7, 1.3-7, 1-7
-GitCommit: 0a6d53c9b36cc15366aa0588c38f054efd0bb851
+GitCommit: 492416713b703327b4c61e8eac9775aaeecd66e5
 Directory: 1.3/7
 
 Tags: 1.3.7-7-alpine, 1.3-7-alpine, 1-7-alpine
-GitCommit: 0a6d53c9b36cc15366aa0588c38f054efd0bb851
+GitCommit: 492416713b703327b4c61e8eac9775aaeecd66e5
 Directory: 1.3/7-alpine
 
 Tags: 1.3.7-7-centos, 1.3-7-centos, 1-7-centos
-GitCommit: 0a6d53c9b36cc15366aa0588c38f054efd0bb851
+GitCommit: 492416713b703327b4c61e8eac9775aaeecd66e5
 Directory: 1.3/7-centos
 
 Tags: 1.3.7-8.0, 1.3-8.0, 1-8.0
-GitCommit: 0a6d53c9b36cc15366aa0588c38f054efd0bb851
+GitCommit: 492416713b703327b4c61e8eac9775aaeecd66e5
 Directory: 1.3/8.0
 
 Tags: 1.3.7-8.0-alpine, 1.3-8.0-alpine, 1-8.0-alpine
-GitCommit: 0a6d53c9b36cc15366aa0588c38f054efd0bb851
+GitCommit: 492416713b703327b4c61e8eac9775aaeecd66e5
 Directory: 1.3/8.0-alpine
 
 Tags: 1.3.7-8.0-centos, 1.3-8.0-centos, 1-8.0-centos
-GitCommit: 0a6d53c9b36cc15366aa0588c38f054efd0bb851
+GitCommit: 492416713b703327b4c61e8eac9775aaeecd66e5
 Directory: 1.3/8.0-centos
 
 Tags: 1.3.7-8.5, 1.3-8.5, 1-8.5, 1.3.7, 1.3, 1, latest
-GitCommit: 0a6d53c9b36cc15366aa0588c38f054efd0bb851
+GitCommit: 492416713b703327b4c61e8eac9775aaeecd66e5
 Directory: 1.3/8.5
 
 Tags: 1.3.7-8.5-alpine, 1.3-8.5-alpine, 1-8.5-alpine, 1.3.7-alpine, 1.3-alpine, 1-alpine, alpine
-GitCommit: 0a6d53c9b36cc15366aa0588c38f054efd0bb851
+GitCommit: 492416713b703327b4c61e8eac9775aaeecd66e5
 Directory: 1.3/8.5-alpine
 
 Tags: 1.3.7-8.5-centos, 1.3-8.5-centos, 1-8.5-centos, 1.3.7-centos, 1.3-centos, 1-centos, centos
-GitCommit: 0a6d53c9b36cc15366aa0588c38f054efd0bb851
+GitCommit: 492416713b703327b4c61e8eac9775aaeecd66e5
 Directory: 1.3/8.5-centos
