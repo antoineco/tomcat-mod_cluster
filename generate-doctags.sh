@@ -6,7 +6,7 @@
 set -euo pipefail
 
 declare -A latestVariant=(
-	['1.3']='8.5'
+	['1.3']='8.0'
 )
 declare -A aliases=(
 	['1.3']='1 latest'
